@@ -1,0 +1,29 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
+
+# NOTE: I temporarily added these history commands so I can go back later to see what I did to setup this system
+# Save every command instantly
+PROMPT_COMMAND='history -a'
+
+# Don't lose history between terminals
+shopt -s histappend
+
+# Make history file bigger
+HISTSIZE=100000
+HISTFILESIZE=200000
+
+# Kill any attempt to fallback to X11
+export XDG_SESSION_TYPE=wayland
+export WLR_NO_HARDWARD_CURSORS=1
+unset DISPLAY
+
+# Add local home dir binaries to path
+export PATH="$HOME/.local/bin:$PATH"
