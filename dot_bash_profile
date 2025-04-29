@@ -1,0 +1,16 @@
+#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+export GTK_THEME=Catppuccin-Mocha-Standard-Blue-Dark
+export XCURSOR_THEME=default
+
+# Only launch swayfx if we're on the first tty
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    echo "tty1 login detected, launching swayfx"
+    #exec dbus-run-session sway
+    exec sway
+fi
+
