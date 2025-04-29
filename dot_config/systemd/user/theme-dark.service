@@ -1,0 +1,6 @@
+[Unit]
+Description=Set Dark Theme
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/enable-theme-dark.sh

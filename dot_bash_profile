@@ -7,6 +7,18 @@
 export GTK_THEME=Catppuccin-Mocha-Standard-Blue-Dark
 export XCURSOR_THEME=default
 
+# Enable theme timers if not active
+if ! systemctl --user is-enabled theme-light.timer >/dev/null 2>&1; then
+    systemctl --user enable --now theme-light.timer
+fi
+
+if ! systemctl --user is-enabled theme-dark.timer >/dev/null 2>&1; then
+    systemctl --user enable --now theme-dark.timer
+fi
+
+# Fix theme state
+$HOME/.local/bin/fix-theme.sh
+
 # Only launch swayfx if we're on the first tty
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     echo "tty1 login detected, launching swayfx"

@@ -1,0 +1,6 @@
+[Unit]
+Description=Set Light Theme
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/enable-theme-light.sh
