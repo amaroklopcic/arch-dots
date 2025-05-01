@@ -2,15 +2,28 @@
 # ~/.bash_profile
 #
 
+# NOTE: .bash_profile runs only for login shells -- shells that start when you log in
+# In here, you set env variables, like PATH, EDITOR, etc.
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export GTK_THEME=Adwaita-dark #Catppuccin-Mocha-Standard-Blue-Dark
-export QT_STYLE_OVERRIDE=Adwaita-Dark
-export XCURSOR_THEME=default
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SESSION_DESKTOP=sway
-export XDG_SESSION_TYPE=wayland
-export MOZ_ENABLE_WAYLAND=1
+# Add local home dir binaries to path
+export PATH="$HOME/.local/bin:$PATH"
+
+export EDITOR="nvim"
+
+# Add nvm (node-version-manager) to path
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# NOTE: I temporarily added these history commands so I can go back later to see what I did to setup this system
+# Save every command instantly
+PROMPT_COMMAND='history -a'
+# Don't lose history between terminals
+shopt -s histappend
+# Make history file bigger
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # Enable theme timers if not active
 if ! systemctl --user is-enabled theme-light.timer >/dev/null 2>&1; then
@@ -28,6 +41,6 @@ $HOME/.local/bin/fix-theme.sh
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     echo "tty1 login detected, launching swayfx"
     #exec dbus-run-session sway
-    exec sway --no-xwayland
+    exec sway
 fi
 

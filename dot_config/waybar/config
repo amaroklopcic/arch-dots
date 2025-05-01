@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "modules-right": ["custom/theme-toggle", "pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -50,6 +50,13 @@
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
+    },
+    "custom/theme-toggle": {
+        "format": "{}",
+        "exec": "$HOME/.local/bin/theme-icon.sh",
+        "interval": 10,
+        "tooltip": "Toggle Dark/Light Theme",
+        "on-click": "$HOME/.local/bin/toggle-theme.sh"
     },
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
