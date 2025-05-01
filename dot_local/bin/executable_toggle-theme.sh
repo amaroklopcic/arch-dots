@@ -5,7 +5,7 @@
 current=$(gsettings get org.gnome.desktop.interface color-scheme)
 
 if [[ "$current" == "'prefer-dark'" ]]; then
-    $HOME/.local/bin/theme-light
+    $HOME/.local/bin/enable-theme-light.sh
 else
-    $HOME/.local/bin/theme-dark
+    $HOME/.local/bin/enable-theme-dark.sh
 fi
