@@ -2,10 +2,21 @@
 # ~/.bashrc
 #
 
+# NOTE: .bashrc Runs for interactive non-login shells -- like when you
+# open a new terminal window in a graphical environment (e.g. GNOME
+# Terminal, Alacritty, etc.)
+# Typical use: aliases, shell functions, prompt customization, etc. 
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
+
+alias vim="nvim"
+
+# Python virtual environment activation shortcuts
+alias act="source .venv/bin/activate"
+alias deact="deactivate"
 
