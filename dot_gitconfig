@@ -1,3 +1,5 @@
 [user]
 	email = amaroklopcic@icloud.com
 	name = Amar Oklopcic
+[init]
+	defaultBranch = main
