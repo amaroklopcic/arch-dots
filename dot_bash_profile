@@ -4,8 +4,13 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export GTK_THEME=Catppuccin-Mocha-Standard-Blue-Dark
+export GTK_THEME=Adwaita-dark #Catppuccin-Mocha-Standard-Blue-Dark
+export QT_STYLE_OVERRIDE=Adwaita-Dark
 export XCURSOR_THEME=default
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
+export MOZ_ENABLE_WAYLAND=1
 
 # Enable theme timers if not active
 if ! systemctl --user is-enabled theme-light.timer >/dev/null 2>&1; then
@@ -23,6 +28,6 @@ $HOME/.local/bin/fix-theme.sh
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     echo "tty1 login detected, launching swayfx"
     #exec dbus-run-session sway
-    exec sway
+    exec sway --no-xwayland
 fi
 

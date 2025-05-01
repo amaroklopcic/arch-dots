@@ -21,9 +21,15 @@ HISTSIZE=100000
 HISTFILESIZE=200000
 
 # Kill any attempt to fallback to X11
-export XDG_SESSION_TYPE=wayland
+#export XDG_SESSION_TYPE=wayland
+export WAYLAND_DISPLAY=wayland-0
 export WLR_NO_HARDWARD_CURSORS=1
 unset DISPLAY
 
 # Add local home dir binaries to path
 export PATH="$HOME/.local/bin:$PATH"
+
+# Add nvm (node-version-manager) to path
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
