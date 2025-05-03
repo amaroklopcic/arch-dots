@@ -10,8 +10,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 alias vim="nvim"
@@ -19,4 +17,17 @@ alias vim="nvim"
 # Python virtual environment activation shortcuts
 alias act="source .venv/bin/activate"
 alias deact="deactivate"
+
+# this is probably bad
+alias pacman="paru"
+
+# add colors to various commands that support it
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias paru="paru --color=auto"  # TODO: double-check this one works
+alias diff="diff --color=auto"
+alias ip="ip -color=auto"
+
+# === Themes ===
+THEME="catppuccin"
 
