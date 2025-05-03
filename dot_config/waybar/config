@@ -75,9 +75,7 @@
     "disk": {
         "path": "/",
         "interval": 30,
-        // "format": "<span font='12px'>\udb80\udeca</span>   {percentage_used}%",
-        "format": "<span font='12px'>\udb80\udeca</span>   {specific_used:0.1f}<span font='11px'>GiB</span> / {specific_total:0.1f}<span font='11px'>GiB</span> ({percentage_used}% used)",
-        // "format": "<span font='12px'>\uf0a0</span>   {used} ({percentage_used}%) / {total}",
+        "format": "<span font='12px'>\udb80\udeca</span>   {specific_used:0.1f}<span font='11px'>GiB</span> / {specific_total:0.1f}<span font='11px'>GiB</span>",
         "tooltip": true,
         "tooltip-format": "{used} out of {total} used ({percentage_used}%)",
         "unit": "GB"
