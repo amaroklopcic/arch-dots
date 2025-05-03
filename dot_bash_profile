@@ -25,6 +25,16 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=200000
 
+export XDG_CURRENT_DESKTOP=sway
+
+# Force Qt to use Kvantum theme engine
+export QT_STYLE_OVERRIDE=kvantum
+
+# I don't think this var is needed, it basically just tells Qt how
+# to handle icons/fonts/platform stuff, but I'm setting all of it
+# manually anyway
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 # Enable theme timers if not active
 if ! systemctl --user is-enabled theme-light.timer >/dev/null 2>&1; then
     systemctl --user enable --now theme-light.timer
