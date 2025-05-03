@@ -1,90 +1,105 @@
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar at the bottom of your screen
-    "height": 24, // Waybar height
-    // "width": 1366, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["custom/theme-toggle", "pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "signals": {
+        "custom/darkmodetoggle": 10
+    },
+
+    "layer": "top",
+
+    // TODO: add disk, network usage, etc.
+	"modules-left": [
+        "custom/launcher",
+        "cpu",
+        "memory",
+        "network"
+    ],
+	"modules-center": ["sway/workspaces"],
+	"modules-right": [
+        "custom/updates",
+        "custom/darkmodeswitch",
+        "pulseaudio",
+        "clock",
+        "tray"
+    ],
+
+    "custom/darkmodeswitch": {
+        "format": "\udb81\udd0e   {}",
+        "exec": "$HOME/.local/bin/theme-icon.sh",
+        "interval": 9999,
+        "tooltip": "Toggle Dark/Light Theme",
+        "on-click": "$HOME/.local/bin/toggle-theme.sh",
+    },
+
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
-        "format": "{icon}",
-        "format-icons": {
-            "1:web": "",
-            "2:code": "",
-            "3:term": "",
-            "4:work": "",
-            "5:music": "",
-            "6:docs": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
+        //"format": "{icon}",
+        //"format-icons": {
+        //    "1:web": "",
+        //    "2:code": "",
+        //    "3:term": "",
+        //    "4:work": "",
+        //    "5:music": "",
+        //    "6:docs": "",
+        //    "urgent": "",
+        //    "focused": "",
+        //    "default": ""
+        //}
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
+
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume:5}%",
+		"format-muted": "\ueee8   {volume}%",
+		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"format-icons": {
+			"default": ["\uf026", "\uf027", "\uf028"]
+		}
+	},
+
+	"network": {
+		"tooltip": false,
+		"format-wifi": "\uf1eb {essid}",
+		"format-ethernet": "\udb80\udf17   {ipaddr}/{cidr}",
+        "format-disconnected": "\udb80\udf19"
+	},
+
+	"tray":{
+		"icon-size":18,
+		"spacing": 10
+	},
+
     "clock": {
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H:%M %d/%m/%Y}"
     },
+
     "cpu": {
-        "format": "{usage}% "
+        "interval": 5,
+        "format": "\uf4bc   {}%",
     },
+
     "memory": {
-        "format": "{}% "
+        "interval": 30,
+        "format": "\uefc5   {}%",
     },
-    "battery": {
-        "bat": "BAT0",
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+    
+    // TODO: clicking this multiple times opens multiple launchers
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "wofi --show drun",
+        "on-click-right": "killall wofi"
     },
-    "custom/theme-toggle": {
-        "format": "{}",
-        "exec": "$HOME/.local/bin/theme-icon.sh",
-        "interval": 10,
-        "tooltip": "Toggle Dark/Light Theme",
-        "on-click": "$HOME/.local/bin/toggle-theme.sh"
+
+    "custom/power":{
+        "format": " ",
+        "on-click": "bash ~/.config/rofi/leave/leave.sh",
     },
-    "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
-    },
-    "pulseaudio": {
-        //"scroll-step": 1,
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 40,
-        "interval": 30, // Remove this if your script is endless and write in loop
-        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
-        "exec-if": "pgrep spotify"
+
+    "custom/updates":{
+        "format": "{} update(s)",
+        "exec": "paru -Qu | wc -l",
+        "exec-if": "[[ $(paru -Qu | wc -l) != 0 ]]",
+        "interval": 60,
+        "on-click": ""
     }
 }
