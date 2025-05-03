@@ -20,7 +20,7 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 # OLD: wofi --show drun
-set $menu tofi-drun
+set $menu tofi-drun --fuzzy-match true | xargs swaymsg exec --
 
 ### Output configuration
 #
