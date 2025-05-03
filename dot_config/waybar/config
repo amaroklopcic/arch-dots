@@ -10,8 +10,8 @@
         "custom/launcher",
         "cpu",
         "memory",
-        "network",
-        "disk"
+        "disk",
+        "network"
     ],
 	"modules-center": ["sway/workspaces"],
 	"modules-right": [
@@ -23,7 +23,7 @@
     ],
 
     "custom/darkmodeswitch": {
-        "format": "<span font='12px'>\udb81\udd0e</span>   {}",
+        "format": "<span font='12px'>\udb81\udd0e</span>  {}",
         "exec": "$HOME/.local/bin/theme-icon.sh",
         "interval": 9999,
         "tooltip": "Toggle Dark/Light Theme",
@@ -32,14 +32,24 @@
 
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": false
+        "all-outputs": false,
+        "disable-click": false,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": []
+        },
+        "format": "<span font='12px'>{}</span>"
     },
 
 	"pulseaudio": {
 		"tooltip": false,
 		"scroll-step": 5,
-		"format": "<span font='12px'>{icon}</span>   {volume}%",
-		"format-muted": "<span font='12px'>\ueee8</span>   {volume}%",
+		"format": "<span font='12px'>{icon}</span>  {volume}%",
+		"format-muted": "<span font='12px'>\ueee8</span>  {volume}%",
 		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"format-icons": {
 			"default": ["\uf026", "\uf027", "\uf028"]
@@ -49,7 +59,7 @@
 	"network": {
 		"tooltip": false,
 		"format-wifi": "<span font='12px'>\uf1eb</span> {essid}",
-		"format-ethernet": "<span font='12px'>\udb80\udf17</span>   {ipaddr}/{cidr}",
+		"format-ethernet": "<span font='12px'>\udb80\udf17</span>  {ipaddr}/{cidr}",
         "format-disconnected": "<span font='12px'>\udb80\udf19</span>"
 	},
 
@@ -64,18 +74,18 @@
 
     "cpu": {
         "interval": 1,
-        "format": "<span font='12px'>\uf4bc</span>   {load:0.1f}%",
+        "format": "<span font='12px'>\uf4bc</span>  {load:0.1f}%",
     },
 
     "memory": {
         "interval": 30,
-        "format": "<span font='12px'>\uefc5</span>   {}%",
+        "format": "<span font='12px'>\uefc5</span>  {}%",
     },
 
     "disk": {
         "path": "/",
         "interval": 30,
-        "format": "<span font='12px'>\udb80\udeca</span>   {specific_used:0.1f}<span font='11px'>GiB</span> / {specific_total:0.1f}<span font='11px'>GiB</span>",
+        "format": "<span font='12px'>\udb80\udeca</span>  {specific_used:0.1f}<span font='11px'> GiB</span> / {specific_total:0.1f}<span font='11px'> GiB</span>",
         "tooltip": true,
         "tooltip-format": "{used} out of {total} used ({percentage_used}%)",
         "unit": "GB"
