@@ -64,7 +64,7 @@
 	},
 
 	"tray":{
-		"icon-size":16,
+		"icon-size": 16,
 		"spacing": 14
 	},
 
@@ -75,11 +75,13 @@
     "cpu": {
         "interval": 1,
         "format": "<span font='12px'>\uf4bc</span>  {load:0.1f}%",
+        "on-click": "kitty --title btop-float -o window_padding_width=0 -o confirm_os_window_close=0 -o background_opacity=0 -o background_blur=500 --detach btop -u 1000",
     },
 
     "memory": {
-        "interval": 30,
+        "interval": 1,
         "format": "<span font='12px'>\uefc5</span>  {}%",
+        "on-click": "kitty --title btop-float -o window_padding_width=0 -o confirm_os_window_close=0 -o background_opacity=0 -o background_blur=500 --detach btop -u 1000"
     },
 
     "disk": {
@@ -91,17 +93,18 @@
         "unit": "GB"
     },
 
-    // TODO: clicking this multiple times opens multiple launchers
     "custom/launcher":{
-        "format": "<span font='16px'>\udb82\udcc7</span>  ",
-        "on-click": "tofi-drun"
+        "format": "<span font='16px'>\udb82\udcc7</span> ",
+        "on-click": "tofi-drun",
+        "tooltip": true,
+        "tooltip-format": "Launch Tofi"
     },
 
     "custom/updates":{
         "format": "{} update(s)",
         "exec": "paru -Qu | wc -l",
         "exec-if": "[[ $(paru -Qu | wc -l) != 0 ]]",
-        "interval": 60,
+        "interval": 1800,
         "on-click": ""
     }
 }
