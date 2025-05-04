@@ -1,0 +1,27 @@
+for_window {
+  [class="Pavucontrol"] floating enable
+  
+  # firefox picture-in-picture mode
+  [class="Picture-in-Picture"] floating enable
+
+  # handle custom btop implementation when it's opened via waybar module
+  [title="btop-float"] floating enable, resize set 1200 800, move position center, border none
+
+  # custom screenshot preview implementation
+  # show screenshot at the bottom right of the screen
+  [title="__grim_preview_screenshot__"] floating enable, resize set 480 270, move position (95 ppt - 480 px) (95 ppt - 270 px), border normal, border pixel 5
+
+  # pop-up type programs
+  [app_id="ulauncher"] floating enable, border none
+  [window_role="pop-up"] floating enable
+  [window_role="bubble"] floating enable
+  [window_role="dialog"] floating enable
+  [window_type="dialog"] floating enable
+
+  # an attempt at a catch-all for random open-as, save-as popups
+  # from various applications
+  # TODO: would be nice if we could set the position over the program that created
+  # this popup
+  [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set 800 600
+}
+
