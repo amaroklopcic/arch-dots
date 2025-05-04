@@ -1,0 +1,5 @@
+[Unit]
+Description=Sync pacman and AUR databases
+
+[Service]
+ExecStart=/usr/bin/paru -Sy --noconfirm
