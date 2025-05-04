@@ -104,7 +104,7 @@
         "format": "{} update(s)",
         "exec": "paru -Qu | wc -l",
         "exec-if": "[[ $(paru -Qu | wc -l) != 0 ]]",
-        "interval": 1800,
+        "interval": 300, // every 5 mins
         "on-click": ""
     }
 }
