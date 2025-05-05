@@ -135,12 +135,12 @@ window#waybar.hidden {
 #workspaces button.empty {
     color: #b5e8e0;
 }
-#workspaces button.focused {
+#workspaces button.active {
 	color: #abe9b3;
     border-top: 2px solid #abe9b3;
     border-bottom: 2px solid #abe9b3;
 }
-#workspaces button.focused:hover {
+#workspaces button.active:hover {
     color: #e8a2af;
 }
 #workspace button.urgent {

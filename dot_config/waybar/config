@@ -13,7 +13,7 @@
         "disk",
         "network"
     ],
-	"modules-center": ["sway/workspaces"],
+	"modules-center": ["hyprland/workspaces"],
 	"modules-right": [
         "custom/updates",
         "custom/darkmodeswitch",
@@ -30,7 +30,7 @@
         "on-click": "$HOME/.local/bin/toggle-theme.sh",
     },
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         "disable-click": false,
@@ -42,6 +42,8 @@
             "5": [],
             "6": []
         },
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
         "format": "<span font='12px'>{}</span>"
     },
 
@@ -105,6 +107,6 @@
         "exec": "paru -Qu | wc -l",
         "exec-if": "[[ $(paru -Qu | wc -l) != 0 ]]",
         "interval": 300, // every 5 mins
-        "on-click": ""
+        "on-click": "kitty paru -Syu"
     }
 }
