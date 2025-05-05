@@ -1,0 +1,55 @@
+# ~/.zshrc - Used for setting user's interactive shell configuration and
+# executing commands, will be read when starting as an interactive shell.
+
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#
+# === Zinit setup
+#
+# bootstrap zinit, a fast and flexible zsh plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# basic prompt
+autoload -Uz promptinit; promptinit
+# prompt gentoo
+
+# completion
+autoload -Uz compinit && compinit
+
+# better globbing and tab completion
+setopt extended_glob
+setopt menucomplete
+
+#
+# === aliases ===
+#
+alias vim="nvim"
+
+# Python virtual environment activation shortcuts
+alias act="source .venv/bin/activate"
+alias deact="deactivate"
+
+# this is probably bad
+alias pacman="paru"
+
+# add colors to various commands that support it
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias paru="paru --color=auto"  # TODO: double-check this one works
+alias diff="diff --color=auto"
+alias ip="ip -color=auto"
+
+# === themes ===
+THEME="catppuccin"
+
+# run starship
+# eval "$(starhip init zsh)"
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
